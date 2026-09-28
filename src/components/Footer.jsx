@@ -62,9 +62,6 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} DriveFlow. All rights reserved.</p>
-          <div className="flex gap-4">
-            <span className="badge badge-neutral">Milestone 1 Demo</span>
-          </div>
         </div>
       </div>
     </footer>
