@@ -24,15 +24,25 @@
   position: absolute;
   top: var(--space-4);
   left: var(--space-4);
-  background-color: rgba(255, 255, 255, 0.9);
-  color: var(--text-main);
-  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--primary-color);
+  padding: 0.35rem 0.85rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover .vehicle-card-category {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
 }
 
 .vehicle-card-content {
@@ -56,10 +66,9 @@
 }
 
 .vehicle-card-specs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
   border-top: 1px solid var(--border-color);
   padding-top: var(--space-4);
 }

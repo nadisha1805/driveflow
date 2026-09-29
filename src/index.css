@@ -149,8 +149,9 @@
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 15px rgba(15, 61, 54, 0.3);
+  border-color: rgba(15, 61, 54, 0.4);
 }
 
 /* Utilities */
