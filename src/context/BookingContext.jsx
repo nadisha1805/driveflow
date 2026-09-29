@@ -10,13 +10,50 @@ export const BookingProvider = ({ children }) => {
   // Load from localStorage on mount
   useEffect(() => {
     const storedBookings = localStorage.getItem('driveflow_bookings');
-    if (storedBookings) {
+    if (storedBookings && JSON.parse(storedBookings).length > 0) {
       try {
         setBookings(JSON.parse(storedBookings));
       } catch (e) {
         console.error('Failed to parse bookings from local storage:', e);
-        localStorage.removeItem('driveflow_bookings');
       }
+    } else {
+      // Mock Data
+      const mockBookings = [
+        {
+          id: 'BKG-A1B2C3D4',
+          vehicleId: 'v1',
+          userId: 'u_12345',
+          pickupDate: new Date(Date.now() + 86400000).toISOString(),
+          returnDate: new Date(Date.now() + 86400000 * 3).toISOString(),
+          totalAmount: 255,
+          customerDetails: { firstName: 'John', lastName: 'Doe', email: 'john@example.com', phone: '123-456-7890' },
+          status: 'Upcoming',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 'BKG-X9Y8Z7W6',
+          vehicleId: 'v2',
+          userId: 'u_67890',
+          pickupDate: new Date(Date.now() - 86400000 * 5).toISOString(),
+          returnDate: new Date(Date.now() - 86400000 * 2).toISOString(),
+          totalAmount: 330,
+          customerDetails: { firstName: 'Jane', lastName: 'Smith', email: 'jane@example.com', phone: '098-765-4321' },
+          status: 'Completed',
+          createdAt: new Date(Date.now() - 86400000 * 10).toISOString()
+        },
+        {
+          id: 'BKG-L5M6N7O8',
+          vehicleId: 'v4',
+          userId: 'u_11223',
+          pickupDate: new Date(Date.now() + 86400000 * 5).toISOString(),
+          returnDate: new Date(Date.now() + 86400000 * 10).toISOString(),
+          totalAmount: 350,
+          customerDetails: { firstName: 'Michael', lastName: 'Johnson', email: 'michael@example.com', phone: '555-123-4567' },
+          status: 'Upcoming',
+          createdAt: new Date().toISOString()
+        }
+      ];
+      setBookings(mockBookings);
     }
     setLoading(false);
   }, []);

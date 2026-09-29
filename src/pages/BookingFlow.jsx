@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Check, ChevronRight, AlertCircle, Calendar } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useBooking } from '../context/BookingContext';
-import { mockVehicles } from '../data/vehicles';
+import { useVehicle } from '../context/VehicleContext';
 import { differenceInDays, parseISO, startOfDay, isBefore } from 'date-fns';
 import './BookingFlow.css';
 
@@ -15,6 +15,7 @@ const STEPS = {
 };
 
 const BookingFlow = () => {
+  const { vehicles: mockVehicles } = useVehicle();
   const { vehicleId } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();

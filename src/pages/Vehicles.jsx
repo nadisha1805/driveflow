@@ -2,10 +2,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Filter, X, Search } from 'lucide-react';
 import VehicleCard from '../components/VehicleCard';
-import { mockVehicles } from '../data/vehicles';
+import { useVehicle } from '../context/VehicleContext';
 import './Vehicles.css';
 
 const Vehicles = () => {
+  const { vehicles: mockVehicles } = useVehicle();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');

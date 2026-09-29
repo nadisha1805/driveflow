@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Users, Fuel, Settings, CheckCircle2, XCircle, ArrowLeft, Calendar } from 'lucide-react';
-import { mockVehicles } from '../data/vehicles';
+import { useVehicle } from '../context/VehicleContext';
 import { useBooking } from '../context/BookingContext';
 import { useAuth } from '../context/AuthContext';
 import { differenceInDays, addDays, startOfDay, parseISO } from 'date-fns';
 import './VehicleDetails.css';
 
 const VehicleDetails = () => {
+  const { vehicles: mockVehicles } = useVehicle();
   const { id } = useParams();
   const navigate = useNavigate();
   const { checkAvailability } = useBooking();

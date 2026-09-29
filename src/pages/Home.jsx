@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Shield, Clock, MapPin, Star } from 'lucide-react';
 import VehicleCard from '../components/VehicleCard';
-import { mockVehicles } from '../data/vehicles';
+import { useVehicle } from '../context/VehicleContext';
 import './Home.css';
 
 const Home = () => {
+  const { vehicles: mockVehicles } = useVehicle();
   const navigate = useNavigate();
   const [searchCategory, setSearchCategory] = useState('');
   const [pickupDate, setPickupDate] = useState('');

@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { Calendar, MapPin, ArrowRight, XCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useBooking } from '../context/BookingContext';
-import { mockVehicles } from '../data/vehicles';
+import { useVehicle } from '../context/VehicleContext';
 import { format, parseISO } from 'date-fns';
 import './Bookings.css';
 
 const Bookings = () => {
+  const { vehicles: mockVehicles } = useVehicle();
   const { user } = useAuth();
   const { getUpcomingBookings, getCompletedBookings, getCancelledBookings, cancelBooking } = useBooking();
   
