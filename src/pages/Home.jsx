@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Search, Shield, Clock, MapPin, Star } from 'lucide-react';
 import VehicleCard from '../components/VehicleCard';
 import { useVehicle } from '../context/VehicleContext';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import './Home.css';
 
 const Home = () => {
+  useScrollAnimation();
   const { vehicles: mockVehicles } = useVehicle();
   const navigate = useNavigate();
   const [searchCategory, setSearchCategory] = useState('');
@@ -29,8 +31,11 @@ const Home = () => {
     <div className="home-page">
       {/* Hero Section */}
       <section className="home-hero">
+        <div className="floating-shape shape-1"></div>
+        <div className="floating-shape shape-2"></div>
+        <div className="floating-shape shape-3"></div>
         <div className="container relative">
-          <div className="hero-content">
+          <div className="hero-content animate-on-scroll">
             <span className="hero-subtitle">Premium Car Rental</span>
             <h1 className="heading-xl">Experience the Drive of Your Dreams</h1>
             <p className="hero-desc">
@@ -38,7 +43,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="hero-search-box">
+          <div className="hero-search-box animate-on-scroll stagger-1">
             <form onSubmit={handleSearch}>
               <div className="search-grid">
                 <div>
@@ -78,18 +83,20 @@ const Home = () => {
       {/* Featured Vehicles */}
       <section className="section section-light">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header animate-on-scroll">
             <h2 className="heading-lg section-title">Featured Fleet</h2>
             <p className="section-desc">Discover our most popular vehicles, maintained to the highest standards for your comfort and safety.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredVehicles.map(vehicle => (
-              <VehicleCard key={vehicle.id} vehicle={vehicle} />
+            {featuredVehicles.map((vehicle, index) => (
+              <div key={vehicle.id} className={`animate-on-scroll stagger-${(index % 4) + 1}`}>
+                <VehicleCard vehicle={vehicle} />
+              </div>
             ))}
           </div>
           
-          <div className="flex justify-center mt-12">
+          <div className="flex justify-center mt-12 animate-on-scroll">
             <button className="btn btn-outline" onClick={() => navigate('/vehicles')}>
               View All Vehicles
             </button>
@@ -100,27 +107,27 @@ const Home = () => {
       {/* Why Choose Us */}
       <section className="section section-white">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header animate-on-scroll">
             <h2 className="heading-lg section-title">Why Choose DriveFlow</h2>
             <p className="section-desc">We offer more than just a car rental. We provide a premium mobility experience tailored to your needs.</p>
           </div>
           
           <div className="features-grid">
-            <div className="feature-card">
+            <div className="feature-card animate-on-scroll stagger-1">
               <div className="feature-icon-wrapper">
                 <Shield size={32} />
               </div>
               <h3 className="feature-title">Premium Insurance</h3>
               <p className="text-muted">Comprehensive coverage included with every rental for your peace of mind.</p>
             </div>
-            <div className="feature-card">
+            <div className="feature-card animate-on-scroll stagger-2">
               <div className="feature-icon-wrapper">
                 <Clock size={32} />
               </div>
               <h3 className="feature-title">24/7 Support</h3>
               <p className="text-muted">Our dedicated concierge team is available around the clock to assist you.</p>
             </div>
-            <div className="feature-card">
+            <div className="feature-card animate-on-scroll stagger-3">
               <div className="feature-icon-wrapper">
                 <MapPin size={32} />
               </div>
@@ -134,23 +141,23 @@ const Home = () => {
       {/* How It Works */}
       <section className="section section-light">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header animate-on-scroll">
             <h2 className="heading-lg section-title">How It Works</h2>
             <p className="section-desc">Get behind the wheel in three simple steps.</p>
           </div>
           
           <div className="steps-grid">
-            <div className="step-card">
+            <div className="step-card animate-on-scroll stagger-1">
               <div className="step-number">1</div>
               <h3 className="step-title">Choose Location & Date</h3>
               <p className="text-muted">Select your preferred pickup location and dates for your journey.</p>
             </div>
-            <div className="step-card">
+            <div className="step-card animate-on-scroll stagger-2">
               <div className="step-number">2</div>
               <h3 className="step-title">Select Your Vehicle</h3>
               <p className="text-muted">Browse our premium fleet and find the perfect match for your needs.</p>
             </div>
-            <div className="step-card">
+            <div className="step-card animate-on-scroll stagger-3">
               <div className="step-number">3</div>
               <h3 className="step-title">Book & Drive</h3>
               <p className="text-muted">Complete your booking securely and hit the road with confidence.</p>
@@ -160,7 +167,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section">
+      <section className="cta-section animate-on-scroll">
         <div className="container">
           <div className="cta-content">
             <h2 className="heading-lg mb-4">Ready for Your Next Adventure?</h2>
